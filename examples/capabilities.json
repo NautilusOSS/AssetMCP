@@ -1,0 +1,49 @@
+{
+  "name": "asset-mcp",
+  "version": "0.1.0",
+  "transport": "stdio",
+  "networks": ["algorand-mainnet", "voi-mainnet"],
+  "standards": ["asa", "arc200", "arc72"],
+  "capabilities": {
+    "signing": false,
+    "broadcasting": false,
+    "unsigned_transactions": true
+  },
+  "tool_namespaces": {
+    "asa": [
+      "asa_get_asset",
+      "asa_get_holding",
+      "asa_search_holdings",
+      "asa_transfer_txn",
+      "asa_optin_txn",
+      "asa_closeout_txn"
+    ],
+    "arc200": [
+      "arc200_get_metadata",
+      "arc200_balance_of",
+      "arc200_allowance",
+      "arc200_has_balance",
+      "arc200_has_allowance",
+      "arc200_get_events",
+      "arc200_transfer_txn",
+      "arc200_transfer_from_txn",
+      "arc200_approve_txn",
+      "nt200_withdraw_txn",
+      "nt200_deposit_txn",
+      "nt200_create_balance_box_txn"
+    ],
+    "arc72": [
+      "arc72_get_metadata",
+      "arc72_owner_of",
+      "arc72_balance_of",
+      "arc72_get_approved",
+      "arc72_is_approved_for_all",
+      "arc72_token_uri",
+      "arc72_total_supply",
+      "arc72_get_events",
+      "arc72_transfer_txn",
+      "arc72_approve_txn",
+      "arc72_set_approval_for_all_txn"
+    ]
+  }
+}

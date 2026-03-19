@@ -1,8 +1,34 @@
 {
-  "name": "empty-mcp",
-  "version": "0.0.1",
+  "name": "asset-mcp",
+  "version": "0.1.0",
+  "description": "UluOS stdio MCP: ASA + ARC-200 + ARC-72 reads and unsigned transaction builders for Algorand and Voi mainnet",
   "type": "module",
+  "main": "index.js",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "demo": "node examples/demo.mjs"
+  },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.0.0"
+    "@modelcontextprotocol/sdk": "^1.27.0",
+    "algosdk": "^3.5.0",
+    "ulujs": "^3.0.2",
+    "zod": "^3.25.0"
+  },
+  "keywords": [
+    "mcp",
+    "algorand",
+    "voi",
+    "arc200",
+    "arc72",
+    "asa",
+    "uluos"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NautilusOSS/AssetMCP"
   }
 }
