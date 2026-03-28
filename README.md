@@ -99,6 +99,14 @@ Errors:
 | `arc200_transfer_txn` | Simulated transfer → unsigned txn group |
 | `arc200_transfer_from_txn` | Simulated `transferFrom` |
 | `arc200_approve_txn` | Simulated `approve` |
+| `nt200_withdraw_txn` | NT200 unwrap (underlying ASA / native) |
+| `nt200_deposit_txn` | NT200 wrap (payment or `assetId` + axfer) |
+| `nt200_create_balance_box_txn` | NT200 `createBalanceBox` |
+| `arc200_exchange` | **XCHG-1:** read `(exchange_asset, sink)` for ASA ↔ ARC-200 exchange |
+| `arc200_redeem_txn` | **XCHG-1:** ASA → app + `arc200_redeem` (receive ARC-200 from sink) |
+| `arc200_swap_back_txn` | **XCHG-1:** `arc200_transfer` to sink + `arc200_swapBack` (ARC-200 → ASA) |
+
+**XCHG-1 (optional extension)** — Draft: [ARCFoundry XCHG-1](https://github.com/NautilusOSS/ARCFoundry/blob/main/drafts/XCHG-1.md). Interface id `0xf7bde749`. Use **`arc200_exchange`** first: if it fails, the token does not expose the exchange API. Use **`arc200_transfer_txn`** (and allowances) for ordinary peer-to-peer ARC-200 moves; use **redeem / swap_back** only when moving between the paired ASA and ARC-200 via the app’s sink (e.g. POW/WAD-style positions that wrap an ASA). Redeem requires the user to hold and opt in to the **exchange ASA**; swap back requires ARC-200 balance and usually ASA opt-in to receive the outgoing ASA.
 
 ### `arc72_*` (`ulujs` ARC-72)
 
@@ -146,6 +154,7 @@ See [`examples/capabilities.json`](examples/capabilities.json).
 - **ARC-200 / ARC-72 reads:** Use ulujs `Contract` with the public simulation sender (`oneAddress` from ulujs) for readonly ABI calls.
 - **Event filters:** `address` is forwarded to the indexer as **`sender`** (arccjs API).
 - **ARC-72 `setApprovalForAll`:** Implemented against `contractInstance.arc72_setApprovalForAll` because `ulujs` `safe_arc72_setApprovalForAll` references undefined variables (upstream bug).
+- **XCHG-1:** `arc200_redeem_txn` uses **arccjs** `setExtraTxns` with an ABI-encoded app call (axfer + redeem in one simulation). `arc200_swap_back_txn` concatenates an ulujs-simulated `arc200_transfer` to `sink` with an `arc200_swapBack` app call, then re-groups with `assignGroupID`.
 
 ## License
 
