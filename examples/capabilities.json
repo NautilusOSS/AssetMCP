@@ -30,7 +30,10 @@
       "arc200_approve_txn",
       "nt200_withdraw_txn",
       "nt200_deposit_txn",
-      "nt200_create_balance_box_txn"
+      "nt200_create_balance_box_txn",
+      "arc200_exchange",
+      "arc200_redeem_txn",
+      "arc200_swap_back_txn"
     ],
     "arc72": [
       "arc72_get_metadata",

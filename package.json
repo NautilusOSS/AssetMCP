@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "demo": "node examples/demo.mjs"
+    "demo": "node examples/demo.mjs",
+    "test": "node test/arc200-xchg.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.0",
